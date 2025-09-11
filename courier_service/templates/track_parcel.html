@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+{% block loadstatic %} {% load static %} {% endblock %}
+{% block inpagestyle %}
+{% load static %}
+#map {
+  width: 100%;
+  height: 400px;
+}
+ {% endblock %}
+
+ {% block inpagescript %} 
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-nI876RngckEj4ztELG3u06mynpC6--o&callback=initMap" async defer></script>
+
+
+
+    <script>
+        // Initialize the map with a default location (in case order location is not available)
+        var defaultLocation = {
+            lat: 40.7128,  // Default latitude
+            lng: -74.0060  // Default longitude
+        };
+
+        // Check if order location data is available
+        {% if order_location %}
+            var orderLocation = {
+                lat: {{ order_location.latitude }},  // Latitude from Django context
+                lng: {{ order_location.longitude }}  // Longitude from Django context
+            };
+        {% else %}
+            var orderLocation = defaultLocation;
+        {% endif %}
+
+        // Initialize the map
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: orderLocation,
+                zoom: 12  // Adjust the zoom level as needed
+            });
+
+            // Create a marker for the order location
+            var marker = new google.maps.Marker({
+                position: orderLocation,
+                map: map,
+                title: 'Order Location'
+            });
+        }
+    </script>
+ {% endblock %}
+{% block pagebody %}
+<div style="background-color: #0a0027;">
+  <!-- Section: Design Block -->
+<section class="">
+<!-- Jumbotron -->
+<div class="px-4 py-5 px-md-5 text-center text-lg-start my-4" style="background-color: hsl(239.16deg 100% 11.42%)">
+<div class="container">
+  <div class="row gx-lg-5 align-items-center">
+    <div class="col-lg-6 mb-5 mb-lg-0">
+      <h1 class="my-5 display-3 fw-bold ls-tight" style="color: aliceblue;">
+        Track orders <br />
+        <span class="text-primary">anytime</span>
+      </h1>
+      <p style="color: whitesmoke">
+        Welcome to our parcel tracking system! We understand how important it is for you to keep tabs on your deliveries. To track your parcel, simply enter your unique tracking number in the field below and click "Track." You will receive real-time updates on the status and location of your package. If you have any questions or need assistance, please don't hesitate to reach out to our customer support team. Thank you for choosing us for your parcel delivery needs.
+
+      </p>
+    </div>
+
+    <div class="col-lg-6 mb-5 mb-lg-0">
+      <div class="card">
+        <div class="card-body py-5 px-md-5">
+          <div class="container">
+            <h2><b>Track Your</b> Order</h2>
+    
+    <div class="container">
+      <form method="post"  class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" style="max-width: 420px;">
+        {% csrf_token %}
+        <input type="search" class="form-control my-2" name="orderid" placeholder="Order Id" aria-label="Search">
+        <div class="mx-auto my-2">
+          <button class="btn btn-dark" type="submit" style="padding-left: 40px;padding-right: 40px;">Track Order</button>
+        </div>
+      </form>
+      {% comment %} {%if message%} {% endcomment %}
+        
+      {% comment %} {%endif%} {% endcomment %}
+      {%if order_location%}
+      <div id="map"></div>
+      {%else%}
+      <div style="color: red">Enter valid Order Id</div>
+      {%endif%}
+    </div>
+     
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Jumbotron -->
+
+</section>
+<!-- Section: Design Block -->
+<div class="container">
+<h3 style="color: aliceblue;">
+See What our users say about us
+</h3>
+<hr/>
+</div>
+<div class="container">
+<div class="container marketing">
+
+<!-- Three columns of text below the carousel -->
+<div class="row">
+  <div class="col-lg-4">
+    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    <h2 class="fw-normal" style="color: aliceblue;">User 1</h2>
+    <p style="color: aliceblue;">Nice Ordering Portal which seems easiest to use. Interactive and attractive website makes it even more wonderful. </p>
+    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+  </div><!-- /.col-lg-4 -->
+  <div class="col-lg-4">
+    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    <h2 class="fw-normal" style="color: aliceblue;">User 2</h2>
+    <p style="color: aliceblue;">Good and easy to use website with a good UI gives a great user experience.</p>
+    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+  </div><!-- /.col-lg-4 -->
+  <div class="col-lg-4">
+    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+    <h2 class="fw-normal" style="color: aliceblue;">User 3</h2>
+    <p style="color: aliceblue;">Along with having all the necessary functionalities the site provide a great platform for ordering and tracking parcels.</p>
+    <p><a class="btn btn-secondary" href="#">View details »</a></p>
+  </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->
+
+
+<!-- START THE FEATURETTES -->
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading fw-normal lh-1" style="color: aliceblue;">Feature Number one <span style="color: yellow;"><br/>"Door to door services"</span></h2>
+    <p class="lead" style="color: aliceblue;">Order that will come to your doorsteps. No need to travel anywhere even not to the colony gate 50 meters away from your doorstep.</p>
+  </div>
+  <div class="col-md-5">
+<<<<<<< Updated upstream
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{% static "\media\trackPage_images\trackFeature1.jpg" %}" style="height: 500px; width: 500px;">
+=======
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{% static "media/trackPage_images/trackFeature1.jpg" %}" style="height: 500px; width: 500px;">
+>>>>>>> Stashed changes
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7 order-md-2">
+    <h2 class="featurette-heading fw-normal lh-1" style="color: aliceblue;">Feature Number two <span style="color: yellow;"><br/>"Free packing"</span></h2>
+    <p class="lead" style="color: aliceblue;">Wrapers won't cost you. You can keep or give back the wraapers as per your wish.</p>
+  </div>
+  <div class="col-md-5 order-md-1">
+<<<<<<< Updated upstream
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{% static "\media\trackPage_images\trackFeature2.jpg"%}" style="height: 500px; width: 500px;">
+=======
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{% static "media/trackPage_images/trackFeature2.jpg" %}" style="height: 500px; width: 500px;">
+>>>>>>> Stashed changes
+  </div>
+</div>
+
+<hr class="featurette-divider">
+
+<div class="row featurette">
+  <div class="col-md-7">
+    <h2 class="featurette-heading fw-normal lh-1" style="color: aliceblue;">And lastly<span style="color: yellow;"><br/>"Open box delivery allowed"</span></h2>
+    <p class="lead" style="color: aliceblue;">"Be assured that you get the correct item. You can demand for open delivery to the delivery boy in front of a vedio camera."</p>
+  </div>
+  <div class="col-md-5">
+<<<<<<< Updated upstream
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{%static "\media\trackPage_images\trackFeature3.jpg"%}" style="height: 500px; width: 500px;">
+=======
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{% static "media/trackPage_images/trackFeature3.jpg" %}" style="height: 500px; width: 500px;">
+>>>>>>> Stashed changes
+  </div>
+</div>
+
+<hr class="featurette-divider">
+<!-- /END THE FEATURETTES -->
+</div>
+</div>
+</div>
+{% endblock %}

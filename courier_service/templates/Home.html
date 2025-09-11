@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+{% block loadstatic %} {% load static %} {% endblock %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block pagebody %}
+<div class="hero_picture">
+    <div class="hero_text">
+      <h2>Welcome to <span style="color: red;">E</span> delivery services</h2>
+    </div>
+  </div>
+  <div class="intro_text">
+    <h3>Bringing The World closer, one <span style="color: red;">parcel</span> at a time</h3>
+    <h4>We are India's Largest </h4>
+    <h4 style="margin-bottom: 0; padding-bottom: 10px;"><span style="color: red; font-weight: 520;">Courier Service</span> Providers</h4>
+  </div>
+  <div class="main_container">
+    
+    <div class="page_cards" style="background-image: url({% static "media/home_page_images/home_placeParcel.jpg" %}); background-position: center; background-size: cover; background-repeat: no-repeat;">
+      <h5>Place Order</h5>
+      <p>Schedule a delivery in just few clicks</p>
+      <a href="/place_parcel"><button>Place Order</button></a>
+    </div>
+
+    <div class="page_cards" style="background-image: url({% static "media/home_page_images/home_trackParcel.jpg" %}); background-position: center; background-size: cover; background-repeat: no-repeat;">
+      <h5>Track Parcel</h5>
+      <p>Stay informed about your delivery status</p>
+      <a href="/track_parcel"><button>Track Here</button></a>
+    </div>
+    
+    <div class="page_cards" style="background-image: url({% static "media/home_page_images/home_estimatePrice.jpeg" %}); background-position: center; background-size: cover; background-repeat: no-repeat;">
+      <h5>Estimate Price</h5>
+      <p>Calculate shipping costs with ease.</p>
+      <a href="/estimate"><button>Estimate</button></a>
+    </div>
+
+  </div>
+
+  <section class="container mt-4">
+    <div id="autoMovingCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <div class="caption-container">
+                            <div class="caption-text">
+                                <h3><span style="color: red;">Logistics Department</span> at E Delivery Services</h3>
+
+                                    <p>At E Delivery Services, our logistics department is the heartbeat of our operations, ensuring the smooth and efficient movement of goods from one point to another. We take immense pride in our logistics team, who are dedicated to delivering excellence at every step of the supply chain.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <img src="{% static "media/home_page_images/home_carousel1.jpg" %}" class="d-block w-100" alt="Image 1">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                  
+                    <div class="col-md-6">
+                        <div class="caption-container">
+                            <div class="caption-text">
+                                <h3><span style="color: red;">Customer Service</span> at E Delivery Services</h3>
+
+                                   <p>At E Delivery Services, we take pride in our exceptional customer service department, dedicated to providing the highest level of support and assistance to our valued customers. We understand that delivering a positive customer experience is paramount in our industry, and our customer service team is committed to achieving this goal.</p> 
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <img src="{% static "media/home_page_images/home_carousel2.jpg" %}" class="d-block w-100" alt="Image 2">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <div class="caption-container">
+                            <div class="caption-text">
+                                <h3><span style="color: red;">Sales and Marketing</span> at E Delivery Services</h3>
+
+                                    <p>At E Delivery Services, our Sales and Marketing Department is the driving force behind our business growth and customer acquisition efforts. We understand the importance of reaching out to new clients while nurturing existing relationships, and our dedicated team of professionals is committed to achieving these goals.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <img src="{% static "media/home_page_images/home_carousel3.jpg" %}" class="d-block w-100" alt="Image 3">
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <div class="caption-container">
+                            <div class="caption-text">
+                                <h3><span style="color: red;">Finance and Accounting</span> at E Delivery Services</h3>
+
+                                   <p> Our Finance and Accounting Department at E Delivery Services is the backbone of our financial operations. We understand the critical role that financial management plays in sustaining and growing our business. With a team of skilled professionals, we ensure that our financial health remains robust and transparent.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <img src="{% static "media/home_page_images/home_carousel4.png" %}" class="d-block w-100" alt="Image 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <a class="carousel-control-prev" href="#autoMovingCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#autoMovingCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</section>
+<div class="container">
+  <h2 style="color: red; font-size: 2.5em;">Our Unique Features</h2>
+</div>
+<div class="unique_features">
+  
+  <div class="company_feature_card">
+    <h3>Only Trusted Brands</h3>
+    <p style="font-size: 2.5em;"><i class="fa-regular fa-circle-check"></i></p>
+    <p>"At our company, we take pride in partnering with only the most reputable and trusted brands in the industry. Each of our carefully curated selections has been rigorously vetted for quality, reliability, and customer satisfaction. We understand the importance of trust and aim to provide our customers with products and services they can rely on. With our commitment to excellence, you can rest assured that you are getting the best from only the most dependable brands in the market".</p>
+  </div>
+  <div class="company_feature_card">
+    <h3>On Time Delivery Guarantee</h3>
+    <p style="font-size: 2.5em;"><i class="fa-regular fa-clock"></i></p>
+    <p>"At E-Delivery, we understand the importance of timely deliveries and the impact they have on our customers' experience. That's why we have implemented a robust and efficient delivery system to ensure that your orders reach you promptly. Our commitment to on-time delivery is backed by a dedicated team and state-of-the-art logistics, enabling us to fulfill our promise, every time. With our On-Time Delivery Guarantee, you can have peace of mind knowing that your products will arrive when you need them, without any compromise on efficiency or reliability."</p>
+  </div>
+  <div class="company_feature_card">
+    <h3>Long Term Relationships with Customers</h3>
+    <p style="font-size: 2.5em;"><i class="fa-solid fa-people-group"></i></p>
+    <p>"At E-Delivery, we believe in fostering enduring and meaningful relationships with our customers. We understand that loyalty is built on trust and consistent, exceptional service. That's why we go the extra mile to understand your unique needs and provide tailored solutions that evolve with you. Our dedicated team is committed to ensuring your satisfaction at every step of the journey. With our focus on building long-term relationships, we strive to become your trusted partner, providing support and expertise that you can rely on for years to come."</p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,239 @@
+{% extends "layout.html" %}
+{% block loadstatic %} {% load static %} {% endblock %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/place.css' %}">
+{% endblock %}
+{% block pagebody %}
+<div class="application_of_background"></div>
+<div class="place_order_container">
+  <div style="color: rgb(4, 223, 4); font-size: larger; font-weight: bold;">{{message}}</div>
+  <div class="content_of_place_order">
+  <div class="place_order_text">
+      <h3>Send with confidence, order with ease.</h3>
+      <p class="intro-text"><span style="color: yellow; font-size: 1.8em;">E</span> delivery Services<br/>
+          – your trusted partner in courier convenience.</p>
+
+      <p class="intro-text" style="padding-top: 50px; margin-bottom: 8px;">E delivery Ensures</p>
+      <ul class="characters">
+          <li id="one">Safe Packaging</li>
+          <li id="two">Secured Delivery</li>
+          <li id="three">Reasonable Shipping Costs</li>
+          <li id="four">Reliable Statistics</li>
+      </ul>
+      <ul class="achievements">
+          <li><i class="fa-solid fa-box"></i><p><span class="counterEffected" data-endValCounter=20>0</span>+ Parcels Ordered</p></li>
+          <li><i class="fa-solid fa-location-dot"></i><p><span class="counterEffected" data-endValCounter=10>0</span>+ Major Cities Covered</p></li>
+          <li><i class="fa-solid fa-house"></i><p><span class="counterEffected" data-endValCounter=20>0</span>+ Delivery Centers</p></li>
+      </ul>
+  </div>
+  <div class="place_order_forms">
+      <form method="post">
+        {% csrf_token %}
+          <div class="parcel_details">
+            <h3>Parcel Details</h3>
+            <div class="parcel_detail_input">
+              <input type="text" id="floatingInput" name="ordername" required>
+              <label for="floatingInput">Order name</label>
+            </div>
+            <div class="flex_double_items">
+                  <select class="form-select" name="weight" aria-label="Default select example">
+                    {% comment %} <option selected="">Weight of the parcel</option> {% endcomment %}
+                    <option value="1">Below 5kg</option>
+                    <option value="2">5kg to 10kg</option>
+                    <option value="3">10kg to 20 kg</option>
+                    <option value="4">20kg to 30 kg</option>
+                    <option value="5">Above 30kg</option>
+                  </select>
+                 
+              
+                  <select class="form-select" name="deliverymode" aria-label="Default select example">
+                    {% comment %} <option selected="">Parcel delivery mode</option> {% endcomment %}
+                    <option value="1">Normal delivery</option>
+                    <option value="2">Fast delivery</option>
+                    <option value="3">Super fast delivery</option>
+                    <option value="4">Instant delivery</option>
+                  </select>
+              </div>  
+            
+          </div>
+          <div class="to_adress_details">
+            <h3>To Address</h3>
+            <div class="parcel_detail_input">
+              <input type="text" name="receivername" id="floatingInput" required>
+              <label for="floatingInput">Receiver's name</label>
+            </div>
+            <div class="parcel_detail_input">
+              <input type="text" name="number" id="floatingInput" required>
+              <label for="floatingInput">Receiver's Contact Number</label>
+            </div>
+            <div class="parcel_detail_input">
+              <input type="text" name="houseno" id="floatingInput" required>
+              <label for="floatingInput">House/Room/Door No.</label>
+            </div>
+            <div class="parcel_detail_input">
+              <input type="text" name='street' id="floatingInput" required>
+              <label for="floatingInput">Street</label>
+            </div>
+            
+            <div class="flex_double_items">
+                  <select class="form-select" id="city1" name="city" aria-label="Default select example">
+                    <option value="0">City</option>
+                    {% for i in places %}
+                    <option value="{{i.City}}">{{i.City}}</option>
+                    
+                  {% endfor %}
+                  </select>
+                
+            
+                  <select class="form-select" id="state1" name="state" aria-label="Default select example">
+                    <option value="0">State</option>
+                    {% for i in places %}
+                      <option value="{{i.State}}">{{i.State}}</option>
+                      
+                    {% endfor %}
+                  </select>
+              </div>
+            <div class="parcel_detail_input" name="pincode" id="floatingInput">
+              <input type="number" name="pincode" required>
+              <label for="floatingInput">Pincode</label>
+            </div>
+          </div>
+          <div class="from_adress_details">
+            <h3>From Address</h3>
+            <div class="parcel_detail_input">
+              <input type="text" name="houseno2" id="floatingInput" value="{{user.House_No}}" required>
+              <label for="floatingInput">House/Room/Door No.</label>
+            </div>
+            
+            <div class="parcel_detail_input">
+              <input type="text" name="street2" value="{{user.Street}}" id="floatingInput" required>
+              <label for="floatingInput">Street</label>
+            </div>
+              <div class="flex_double_items">
+                
+                  <select class="form-select" id="city2" value="{{user.City}}" name="city2" aria-label="Default select example">
+                    <option value="0">City</option>
+                    {% for i in places %}
+                    <option value="{{i.City}}">{{i.City}}</option>
+                    
+                  {% endfor %}
+                  </select>
+                  
+                  
+                  <select class="form-select" id="state2" name="state2" value="{{user.State}}" aria-label="Default select example">
+                    <option value="0">State</option>
+                    {% for i in places %}
+                      <option value="{{i.State}}">{{i.State}}</option>
+                      
+                    {% endfor %}
+                  </select>
+              </div>
+            <div class="parcel_detail_input">
+              <input type="number" name="pincode2" id="floatingInput" value="{{user.Pin_Code}}" required>
+              <label for="floatingInput">Pincode</label>
+            </div>
+          </div>
+
+          {%if user.is_authenticated%}
+          <button type="submit">Submit</button>
+          {%else%}  
+          <div style="color:red">Login First to place parcel.</div> 
+          <button type="submit" style="background-color: yellow" disabled>Submit</button>
+          {%endif%}
+        </form>
+  </div>
+</div>
+</div>
+<div class="container">
+<div class="row featurette" style="background-color: #222222;">
+  <div class="col-md-7" style="margin-top: 7%; text-align: center;">
+    
+    
+    <h2 style="color: white;">A Description of our <span style="color: rgb(251, 251, 7);">Delivery Partners</span></h2>
+    <p style="text-align: center; color:white;">At E Delivery, our dedicated team of delivery professionals is the backbone of our service. Our delivery boys are not just employees; they are the friendly faces that represent our commitment to excellence. Each member of our team undergoes rigorous background checks and training programs to ensure they are not only reliable but also equipped with the skills necessary to provide outstanding service. From their recognizable uniforms and IDs to their dedication to safety protocols, our delivery boys prioritize the well-being of our customers and their parcels. With optimized routes and state-of-the-art technology, they ensure timely deliveries while maintaining a friendly and professional demeanor. We believe in the power of great customer service, and our delivery boys are here to uphold that promise. They are not just delivery personnel; they are trusted members of our community who take pride in serving you. Your satisfaction is their top priority, and we encourage you to provide feedback and share your positive experiences. At E Delivery, our delivery boys are more than a team; they are your partners in convenience and reliability.</p>
+  </div>
+  <div class="col-md-5" style="padding: 0; margin-top: 0;">
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="https://media.istockphoto.com/id/1386232790/photo/shot-of-a-young-man-receiving-his-delivery-from-the-courier.webp?b=1&amp;s=170667a&amp;w=0&amp;k=20&amp;c=wyeTWNVXACEvpbQMHalp6h9mm8QBadgm8-QnhbxVX8E=" style="height: 500px; width: 500px;">
+  </div>
+</div></div>
+<script>
+  document.getElementById("state1").addEventListener("change", function() {
+      const firstSelect = this;
+      const secondSelect = document.getElementById("city1");
+      const selectedValue = firstSelect.value;
+      var data =[
+          {% for i in places %}
+              ["{{i.State}}","{{i.City}}"],
+          {% endfor %}
+      ]
+      // Clear existing options in the second select
+      secondSelect.innerHTML = "";
+      for(var i=0; i<data.length;i++){
+          var pl=data[i];
+          if(selectedValue === pl[0]){
+              secondSelect.options.add(new Option(pl[1],pl[1]));
+          }
+      }
+  });
+  document.getElementById("state2").addEventListener("change", function() {
+      const firstSelect = this;
+      const secondSelect = document.getElementById("city2");
+      const selectedValue = firstSelect.value;
+      var data =[
+          {% for i in places %}
+              ["{{i.State}}","{{i.City}}"],
+          {% endfor %}
+      ]
+      // Clear existing options in the second select
+      secondSelect.innerHTML = "";
+      for(var i=0; i<data.length;i++){
+          var pl=data[i];
+          if(selectedValue === pl[0]){
+              secondSelect.options.add(new Option(pl[1],pl[1]));
+          }
+      }
+  });
+  document.getElementById("city2").addEventListener("change", function() {
+      const firstSelect = this;
+      const secondSelect = document.getElementById("state2");
+      const selectedValue = firstSelect.value;
+      var data =[
+          {% for i in places %}
+              ["{{i.State}}","{{i.City}}"],
+          {% endfor %}
+      ]
+      // Clear existing options in the second select
+      secondSelect.innerHTML = "";
+      for(var i=0; i<data.length;i++){
+          var pl=data[i];
+          if(selectedValue === pl[1]){
+              secondSelect.options.add(new Option(pl[0],pl[0]));
+          }
+      }
+  });
+  document.getElementById("city1").addEventListener("change", function() {
+      const firstSelect = this;
+      const secondSelect = document.getElementById("state1");
+      const selectedValue = firstSelect.value;
+      var data =[
+          {% for i in places %}
+              ["{{i.State}}","{{i.City}}"],
+          {% endfor %}
+      ]
+      // Clear existing options in the second select
+      secondSelect.innerHTML = "";
+      for(var i=0; i<data.length;i++){
+          var pl=data[i];
+          if(selectedValue === pl[1]){
+              secondSelect.options.add(new Option(pl[0],pl[0]));
+          }
+      }
+  });
+</script>
+
+    <!-- Include Bootstrap JS (for any required functionality) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block endpagestaticscript %}
+  <script src="{% static 'script/counterScript.js' %}"></script>
+{% endblock %}

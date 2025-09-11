@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+{% block inpagestyle %}
+      body{
+       
+           
+       
+        background-color: #0a0027;
+        /* background-image: url(https://img.freepik.com/premium-vector/warehouse-worker-loading-boxes-truck-courier-delivery-guy-carrying-cardboard-container-packages-parcels-truck-warehouse-worker_327176-201.jpg); */
+        background-size: 100% 30%;
+        background-repeat: no-repeat;
+      }
+      nav{
+        background: linear-gradient(to right, rgb(51, 89, 197),rgb(18, 31, 115),rgb(51, 89, 197));
+        
+      }
+      .navbar-brand{
+          color: white ;
+          font-size: 35px;
+          
+      }
+      .navbar-na{
+        text-align: center;
+        /* border-width: 40%; */
+        padding: 2%;
+        border-radius: 2%;
+        
+      }
+
+      .btn{
+        background-color: rgb(222, 222, 28);
+        /* margin-right: 3%; */
+      }
+      
+      .btn:hover {
+        background-color: rgb(195, 195, 45);
+        color: rgb(16, 43, 220); 
+      }
+      .dot {
+            width: 20px;
+            height: 20px;
+            /* border-radius: 50%; */
+        }
+        .green-dot {
+            background-color: #00FF00;
+        }
+        .grey-dot {
+            background-color: #828282;
+        }
+        .line {
+            margin-top: 5px;
+            width: 48%;
+            height: 10px;
+            background-color: #828282; /* Color of the line */
+        }
+        .line1 {
+            margin-top: 5px;
+            width: 48%;
+            height: 10px;
+            background-color: #00FF00; /* Color of the line */
+        }
+        .line2 {
+            margin-top: 5px;
+            width: 48%;
+            height: 10px;
+            background: linear-gradient(to right, #828282, #00FF00); /* Gradient from grey to green */
+            background-size: 200% 100%; /* Initialize background size */
+            animation: colorChange 2s linear infinite;
+        }
+        @keyframes colorChange {
+            100% { background-position: -100% 0; } 
+            0% { background-position: 100% 0; }
+        }
+        .centered-content {
+            text-align: center;
+            color: white;
+            {% comment %} background: #f0f0f0; {% endcomment %}
+            padding: 20px;
+            {% comment %} border: 1px solid #ccc; {% endcomment %}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        {% endblock %}
+        {% block pagebody %}
+        
+      
+      {%if orders %}
+      {%for i in orders%}
+    <div class="container border border-2 shadow rounded rounded-5 border-black p-3" style="background-color: antiquewhite; margin-top: 10%;">
+        <div class="m-2">
+            <h3 style="display: inline;">Order Id: </h3><p style="display: inline; font-size: x-large;">{{i.Order_Id}}</p>
+        </div> 
+        <div class="m-2">
+            <h3 style="display: inline;">Booked Date: </h3><p style="display: inline; font-size: x-large;">{{i.booked_date}}</p>
+        </div> 
+        <div class="m-2">
+            <h3 style="display: inline;">Delivery charges: </h3><p style="display: inline; font-size: x-large;">{{i.delivery_charge}} Rs</p>
+        </div> 
+
+        <div class="m-2">
+            <h3 style="display: inline;">From: </h3><p style="display: inline; font-size: x-large;">{{i.From_City}},{{i.From_State}}</p>
+        </div> 
+        <div class="m-2">
+            <h3 style="display: inline;">To: </h3><p style="display: inline; font-size: x-large;">{{i.To_City}},{{i.To_State}}</p>
+        </div>  
+        <div class="container mt-5 text-center">
+
+            <div class="d-flex justify-content-between">
+                <div class="dot green-dot"></div>
+                <div class="line2"></div>
+                <div class="dot grey-dot"></div>
+                <div class="line"></div>
+                <div class="dot grey-dot"></div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div><h5>Shipped from {{i.From_City}}</h5></div>
+                
+                {% comment %} <div><h5>Arrived Hyderabad</h5></div> {% endcomment %}
+                
+                <div><h5>{{i.Order_Status}}</h5></div>
+            </div>
+        </div> 
+
+        {% comment %} <div class="container mt-3">
+            <button type="button" class="btn btn-primary" style="background-color: #828282;">Track parcel</button>
+        </div> {% endcomment %}
+    </div>  
+    {%endfor%}
+    {%else%}
+      <h2 class="centered-content">Your Orders History Appear Here!</h2> 
+
+    {%endif%}
+    
+{%endblock%}

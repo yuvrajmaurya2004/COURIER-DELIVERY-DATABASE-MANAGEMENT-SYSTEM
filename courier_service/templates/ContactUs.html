@@ -1,0 +1,189 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block inpagestyle %}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #191919;
+}
+body{
+background-color: #191919;
+background-color: #0a0027; 
+background-image: url('{% static "media/contactUs_images/contact-us-background.jpg" %}'); 
+background-size: 100%;
+}
+
+.contact-container {
+  background-color: rgb(236, 234, 234);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  /* margin: 50px auto; */
+  max-width: 600px;
+  animation: slideRight 1s ease-in-out;
+ 
+  margin-right: 5%;
+  /* display: block; */
+  float: right;
+}
+
+@keyframes slideRight {
+  0% {
+      opacity: 0;
+      transform: translateX(50px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.contact-title {
+  text-align: center;
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.submit-btn {
+  background-color: rgb(222, 222, 28);
+  color: #131212;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+.captions{
+/* display: inline; */
+margin-left: 3%;
+color: white;
+float: left;
+animation: slideUp 1s ease-in-out;
+}
+@keyframes slideUp {
+  0% {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+.caption{
+animation: slideUp 1.5s ease-in-out;
+}
+.promotions{
+animation: slideside 2s ease-in-out;
+}
+@keyframes slideside {
+  0% {
+      opacity: 0;
+      transform: translateX(50px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0px);
+  }
+}
+.contactimage{
+text-align: center;
+
+}
+
+{% endblock %}
+{% block pagebody %}
+<div class="container text-center" style="margin-top: 10%;">
+  <div class="row">
+    
+    <div class="col m-1">
+        <div class="container contact-container">
+            <h1 class="contact-title">Contact Us</h1>
+            
+            <form class="contact-form" action="#" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="col m-1">
+      <div class="captions">
+       <h1>Want to <span style="color: red;">Write</span> Something to Us?</h1>
+       <div class="caption">
+         <h2>Your feedback fuels our <span style="color: red; font-weight: 600;">growth.</span></h2>
+         <h2> Reach out and Share your thoughts</h2>
+       </div>
+      
+       
+       <div class="promotions" style="margin-top: 20%;">
+         <h1>Nearly <span style="color: red;">50+</span> Customers</h1>
+            <h1>Wrote their feedback.</h1>
+           
+        </div>
+        <div class="contactimage">
+         <img src="{% static "media/contactUs_images/contact.png" %}" style="height: 100px; width: 100px; ">
+         <h2>Call Us On: <span style="color: red;">95959 88822</span></h2>
+         <h2>Mail Us On: <span style="color: red;">edelivery@gmail.com</span></h2>
+        </div>
+       
+      </div>
+
+  </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{%block endpagescript %}
+    <script>
+        const x=document.getElementsByClassName("end_footer")
+        const y=(Array.from(x))[0]
+        y.style.backgroundColor="transparent"
+    </script>
+{% endblock %}

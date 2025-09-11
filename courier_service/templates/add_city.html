@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static "css/employee1.css" %}">
+{% endblock %}
+   
+    <title>Employee</title>
+   
+</head>
+{% block pagebody %}
+    <div class="employee_container">
+        <div class="employee_container_control">
+            <div class="employee_details">
+                <!--To provide the image of employee please provide the style of below div background image-->
+                <div class="emp_img"></div>
+                <h1 style="color: aliceblue;">{{e.Name}}</h1>
+                <div class="emp_detail_container">
+                    <table>
+                       
+                        <td><a href="/emp_details" type="button" style="color:white">No. of Employees</a></td>
+                        <td>{{x}}</td></a>
+                        </tr>
+                        <tr>
+                        <td><a href="/branch_details" type="button" style="color:white">No. of Branches</a></td>
+                        <td>{{y}}</td>
+                        </tr>
+                        <tr>
+                        <td><a href="/dept_details" type="button" style="color:white">No. of Departments</a></td>
+                        <td>{{z}}</td>
+                        </tr>
+                        <tr>
+                        <td><a href="/cities_details" type="button" style="color:white">No. of Cities Served</a></td>
+                        <td>{{c}}</td>
+                        </tr>
+                        <tr>
+                            <td>No. of Total Orders</td>
+                            <td>{{t}}</td>
+                            </tr>
+                            <tr>
+                            <td><a href="/not_deliv" type="button" style="color:white">No. of Orders pending</a></td>
+                            <td>{{n}}</td>
+                            </tr>
+                            <tr>
+                            <td><a href="/deliv" type="button" style="color:white">No. of Orders Delivered</a></td>
+                            <td>{{d}}</td>
+                            </tr>                       
+                    </table>
+                </div>
+            </div>
+
+            <div class="parcel_details">
+               
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="order_card">
+                        
+                        <table>
+                            <tr>
+                                <td>City Name</td>
+                                <td><input type="text" name="city" id="id_name" required></td>
+                            </tr>
+                        <tr>
+                            <td>Latitude</td>
+                            <td><input type="text" name="latitude" id="id_name" required>
+                            </td>
+                        </tr>
+                       
+                        <tr>
+                            <td>Longitude</td>
+                            <td><input type="text" name="longitude" id="id_name" required></td>
+                        </tr>
+                    
+                      
+                    </table>
+                    <div style="color:white;">{{mssg}}</div>
+                    <button type="submit" class="btn btn-outline-light">Submit</button>
+                </div>
+                </form>
+                <div><a href="admin_made" class="btn btn-outline-light">Back</a></div>
+              
+            </div>
+        </div>
+    </div>
+{%endblock%}
+

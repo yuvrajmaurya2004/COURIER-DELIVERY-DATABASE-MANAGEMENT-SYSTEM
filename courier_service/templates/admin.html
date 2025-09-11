@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static "css/employee1.css" %}">
+{% endblock %}
+   
+    <title>Employee</title>
+    
+</head>
+{% block pagebody %}
+    <div class="employee_container">
+        <div class="employee_container_control">
+            <div class="employee_details">
+                <!--To provide the image of employee please provide the style of below div background image-->
+                <div class="emp_img"></div>
+                <h1 style="color: aliceblue;">{{e.Name}}</h1> 
+                <div class="emp_detail_container">
+                    <table>
+                        
+                        <td><a href="/emp_details" type="button" style="color:white">No. of Employees</a></td>
+                        <td>{{x}}</td></a>
+                        </tr>
+                        <tr>
+                        <td><a href="/branch_details" type="button" style="color:white">No. of Branches</a></td>
+                        <td>{{y}}</td>
+                        </tr>
+                        <tr>
+                        <td><a href="/dept_details" type="button" style="color:white">No. of Departments</a></td>
+                        <td>{{z}}</td>
+                        </tr>
+                        <tr>
+                        <td><a href="/cities_details" type="button" style="color:white">No. of Cities Served</a></td>
+                        <td>{{c}}</td>
+                        </tr>
+                        <tr>
+                        <td>No. of Total Orders</td>
+                        <td>{{t}}</td>
+                        </tr>
+                        <tr>
+                        <td><a href="/not_deliv" type="button" style="color:white">No. of Orders pending</a></td>
+                        <td>{{n}}</td>
+                        </tr>
+                        <tr>
+                        <td><a href="/deliv" type="button" style="color:white">No. of Orders Delivered</a></td>
+                        <td>{{d}}</td>
+                        </tr>
+                       
+                    </table>
+                </div>
+            </div>
+
+            <div class="parcel_details">
+                <h3 style="color: aliceblue;">Hello! Admin</h3>
+              
+               
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a href="/add_employee" type="button" class="btn btn-outline-light">Add Employees</a>
+                    <a href="/add_branch" type="button" class="btn btn-outline-light">Add Branches</a>
+                    <a href="/add_department" type="button" class="btn btn-outline-light">Add Departments</a>
+                    <a href="/add_city" type="button" class="btn btn-outline-light">Add Cities</a>
+                
+                  </div>
+              
+                  
+            </div>
+        </div>
+    </div>
+{%endblock%}
+

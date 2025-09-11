@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static "css/employee1.css" %}">
+{% endblock %}
+   
+    <title>Employee</title>
+   
+</head>
+{% block pagebody %}
+    <div class="employee_container">
+        <div class="employee_container_control">
+            <div class="employee_details">
+                <!--To provide the image of employee please provide the style of below div background image-->
+                <div class="emp_img"></div>
+                <h1 style="color: aliceblue;">{{e.Name}}</h1>
+                <div class="emp_detail_container">
+                    <table>
+                       
+                        
+                        <td><a href="/emp_details" type="button" style="color:white">No. of Employees</a></td>
+                        <td>{{x}}</td></a>
+                        </tr>
+                        <tr>
+                        <td><a href="/branch_details" type="button" style="color:white">No. of Branches</a></td>
+                        <td>{{y}}</td>
+                        </tr>
+                        <tr>
+                        <td><a href="/dept_details" type="button" style="color:white">No. of Departments</a></td>
+                        <td>{{z}}</td>
+                        </tr>
+                        <tr>
+                            <td><a href="/cities_details" type="button" style="color:white">No. of Cities Served</a></td>
+                            <td>{{c}}</td>
+                        </tr>
+                        <tr>
+                            <td>No. of Total Orders</td>
+                            <td>{{t}}</td>
+                            </tr>
+                            <tr>
+                            <td><a href="/not_deliv" type="button" style="color:white">No. of Orders pending</a></td>
+                            <td>{{n}}</td>
+                            </tr>
+                            <tr>
+                            <td><a href="/deliv" type="button" style="color:white">No. of Orders Delivered</a></td>
+                            <td>{{d}}</td>
+                            </tr>                        
+                    </table>
+                </div>
+            </div>
+            
+            <div class="parcel_details">
+                
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="order_card">
+                        
+                        <table>
+                            <tr>
+                                <td>Employee Id</td>
+                                <td><input type="number" name="Employee_Id" id="id_name" required></td>
+                            </tr>
+                            <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="name" id="id_name" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="text" name="password" id="id_name" required></td>
+                        </tr>
+                        <tr>
+                            <td>Contact</td>
+                            <td><input type="number" name="Contact_Number" id="id_name" required></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            
+                            <td>  <input type="email" name="email" id="id_email" required></td>
+                        </tr>
+                        <tr>
+                            <td>House No</td>
+                            <td><input type="text" name="House_No" id="id_position" required></td>
+                        </tr>
+                    <tr>
+                        <td>Street</td>
+                        <td><input type="text" name="Street" id="id_name" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td><input type="text" name="City" id="id_name" required></td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td><input type="text" name="State" id="id_email" required></td>
+                    </tr>
+                    <tr>
+                        <td>Pincode</td>
+                        <td><input type="number" name="Pincode" id="id_position" required></td>
+                    </tr>
+                    <tr>
+                        <td>Salary</td>
+                        <td><input type="number" name="Salary" id="id_email" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Department</td>
+                        <td><select name="department" id="id_department" required>
+                            {% for department in departments %}
+                            <option value="{{ department.Department_Id }}">{{ department.Department_Name }}</option>
+                            {% endfor %}
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Branch</td>
+                        <td><select name="Branch" id="id_department" required>
+                            {% for branch in branches %}
+                            <option value="{{ branch.Branch_Id}}">{{ branch.Branch_Name }}</option>
+                            {% endfor %}
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Manager</td>
+                        <td><select name="Manager" id="id_department">
+                            {% for employee in employees %}
+                            <option value="{{ employee.Employee_Id }}">{{ employee.Name }}</option>
+                            {% endfor %}
+                        </select></td>
+                    </tr>  
+                    </table>
+                    <div style="color:white;">{{mssg}}</div>
+                    <button type="submit" class="btn btn-outline-light">Submit</button>
+                </div>
+            </form>
+            <div><a href="admin_made" class="btn btn-outline-light">Back</a></div>
+              
+            </div>
+        </div>
+    </div>
+{%endblock%}
+
